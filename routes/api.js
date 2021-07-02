@@ -4,6 +4,8 @@ const db = require('../models');
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workoutTracker", {
    useNewUrlParser: true,
+   useUnifiedTopology: true,
+   useCreateIndex: true,
    useFindAndModify: false
 });
 
@@ -27,7 +29,7 @@ router.post('/api/workouts', (req, res) => {
 });
 
 //aggregate last 7 workouts
-router.get('/api/workouts/stats', (req, res) => {
+router.get('/api/workouts/range', (req, res) => {
    db.Workout.aggregate([
       {
          $addFields: {
