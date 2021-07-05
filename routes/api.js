@@ -37,6 +37,7 @@ module.exports = (app) => {
    })
 
    //add a workout
+   const id = location.search.split("=")[1];
    app.post('/api/workouts' + id, (req, res) => {
       db.Workout.create(req.body)
          .then((data) => res.json(data))
