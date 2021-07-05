@@ -1,13 +1,5 @@
 const router = require('express').Router();
-// const mongoose = require('mongoose');
 const db = require('../models');
-
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workoutTracker", {
-//    useNewUrlParser: true,
-//    useUnifiedTopology: true,
-//    useCreateIndex: true,
-//    useFindAndModify: false
-// });
 
 module.exports = (app) => {
    //get existing data
@@ -45,7 +37,7 @@ module.exports = (app) => {
    })
 
    //add a workout
-   app.post('/api/workouts', (req, res) => {
+   app.post('/api/workouts' + id, (req, res) => {
       db.Workout.create(req.body)
          .then((data) => res.json(data))
          .catch((err) => res.status(400).json(err));
